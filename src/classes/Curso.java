@@ -5,9 +5,9 @@ public class Curso {
     private int curso_cod;
     private String curso;
     private Double carga_h;
-    private String aluno_desc;
-    private Professor professor;
-    private Sala sala;
+    private String curso_desc;
+    private String professor;
+    private String sala;
 
     public Curso(){
         
@@ -37,28 +37,35 @@ public class Curso {
         this.carga_h = carga_h;
     }
 
-    public String getAluno_desc() {
-        return aluno_desc;
+    public String getCurso_desc() {
+        return curso_desc;
     }
 
-    public void setAluno_desc(String aluno_desc) {
-        this.aluno_desc = aluno_desc;
+    public void setCurso_desc(String curso_desc) {
+        this.curso_desc = curso_desc;
     }
 
-    public Professor getProfessor() {
+    public String getProfessor() {
         return professor;
     }
 
-    public void setProfessor(Professor professor) {
+    public void setProfessor(String professor) {
         this.professor = professor;
     }
 
-    public Sala getSala() {
+    public String getSala() {
         return sala;
     }
 
-    public void setSala(Sala sala) {
+    public void setSala(String sala) {
         this.sala = sala;
     }
+
+    @Override
+    public String toString() {
+        return "Curso:\n\n" + "ID do curso: " + curso_cod + "\nCurso: " + curso + "\nCarga horaria: " + carga_h + "\nDescrição do curso: " + curso_desc + "\nProfessor: " + professor + "\nSala: " + sala;
+    }
+
+    
     
 }

@@ -8,34 +8,34 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class ControllerProfessor {
-    
+
     private ArrayList<Curso> curso = new ArrayList<>();
     private ArrayList<Professor> professor = new ArrayList<>();
     private ProfessorDAO pdao = new ProfessorDAO();
-    
-    public void menuProfessor(){
-        
+
+    public void menuProfessor() {
+
         int option;
-        
-        option = Integer.parseInt(JOptionPane.showInputDialog(null, "MENU: \n\n1- Cadastrar Professor\n2- Listar Professores"));
-        
-        switch(option){
+
+        option = Integer.parseInt(JOptionPane.showInputDialog(null, "MENU: \n\n1- Cadastrar Professor\n2- Listar Professores\n3- Altera Professores"));
+
+        switch (option) {
             case 1:
                 cadastraProfessor();
                 break;
             case 2:
                 ArrayList<Professor> pfs = pdao.listarProfessores();
                 String listagem = "";
-                for(Professor p : pfs){
+                for (Professor p : pfs) {
                     listagem += p.toString();
                 }
                 JOptionPane.showMessageDialog(null, listagem);
-                
+
                 break;
+            case 3:
+                altera();
         }
     }
-    
-    
 
     public void cadastraProfessor() {
 
@@ -50,7 +50,26 @@ public class ControllerProfessor {
         pdao.inserirProfessor(p);
 
     }
-    
 
+    public void altera() {
+
+        Professor prof = new Professor();
+        int id;
+
+        ArrayList<Professor> pfs = pdao.listarProfessores();
+        String listagem = "";
+        for (Professor p : pfs) {
+            listagem += p.toString();
+        }
+        id = Integer.parseInt(JOptionPane.showInputDialog(null, listagem + "\nCodigo de funcionario do professor que deseja alterar: "));
+
+        prof.setNome(JOptionPane.showInputDialog("Digite o nome: ", pfs.get(id-1).getNome()));
+        prof.setCpf(Long.parseLong(JOptionPane.showInputDialog("Digite o CPF: ", pfs.get(id-1).getCpf())));
+        prof.setEndereco(JOptionPane.showInputDialog("Digite o endereco: ", pfs.get(id-1).getEndereco()));
+        prof.setEmail(JOptionPane.showInputDialog("Digite o email: ", pfs.get(id-1).getEmail()));
+        prof.setCelular(Long.parseLong(JOptionPane.showInputDialog("Digite o celular: ", pfs.get(id-1).getCelular())));
+
+        pdao.alteraProfessor(prof, id);
+    }
 
 }

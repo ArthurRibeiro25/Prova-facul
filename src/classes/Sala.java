@@ -1,15 +1,22 @@
 package classes;
 
 public class Sala {
-    
+
+    private int id;
     private String nome;
     private String local;
     private int capacidade;
 
-    public Sala(String nome, String local, int capacidade) {
-        this.nome = nome;
-        this.local = local;
-        this.capacidade = capacidade;
+    public Sala() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -35,7 +42,10 @@ public class Sala {
     public void setCapacidade(int capacidade) {
         this.capacidade = capacidade;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Sala:\n\n" + "Id: " + id + "\nNome: " + nome + "\nLocal: " + local + "\nCapacidade: " + capacidade;
+    }
+
 }

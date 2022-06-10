@@ -1,7 +1,9 @@
 package prova;
 
 import Controller.ControllerAluno;
+import Controller.ControllerCurso;
 import Controller.ControllerProfessor;
+import Controller.ControllerSala;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -11,6 +13,8 @@ public class Prova {
         
         int op;
         
+        ControllerCurso cc = new ControllerCurso();
+        ControllerSala cs = new ControllerSala();
         ControllerAluno ca = new ControllerAluno();
         ControllerProfessor cp = new ControllerProfessor();
         Scanner input = new Scanner(System.in);
@@ -28,10 +32,10 @@ public class Prova {
                     ca.menuAluno();
                 break;
             case 3:
-                    
+                    cs.menuSala();
                 break;
             case 4:
-                    
+                    cc.menuCurso();
                 break;
             case 0:
                 
