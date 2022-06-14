@@ -24,7 +24,7 @@ public class ProfessorDAO {
             stmt.setString(5, professor.getCelular() + "");
             stmt.execute();
         } catch (SQLException ex) {
-            System.out.println(ex); 
+            System.out.println(ex);
         }
     }
 
@@ -54,6 +54,53 @@ public class ProfessorDAO {
         return professor;
     }
 
+    public Professor searchIndex(int id) {
+
+        String sql = "SELECT * FROM professor WHERE func_cod=?";
+        Professor pf = new Professor();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+
+                pf.setFunc_cod(rs.getInt("func_cod"));
+                pf.setNome(rs.getString("nome"));
+                pf.setCpf(rs.getLong("cpf"));
+                pf.setEndereco(rs.getString("endereco"));
+                pf.setEmail(rs.getString("email"));
+                pf.setCelular(rs.getInt("celular"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return pf;
+    }
+
+    public ArrayList<Professor> listarProfessoresIDNome() {
+
+        String sql = "SELECT professor.func_cod, professor.nome FROM professor";
+        ArrayList<Professor> p = new ArrayList<>();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Professor pf = new Professor();
+                pf.setFunc_cod(rs.getInt("func_cod"));
+                pf.setNome(rs.getString("nome"));
+
+                p.add(pf);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return p;
+    }
+
     public void alteraProfessor(Professor professor, int id) {
         String sql = "UPDATE professor SET nome=?, cpf=?, endereco=?, email=?, celular=? WHERE func_cod=?";
         try {
@@ -62,10 +109,10 @@ public class ProfessorDAO {
             stmt.setString(2, "" + professor.getCpf());
             stmt.setString(3, professor.getEndereco());
             stmt.setString(4, professor.getEmail());
-            stmt.setString(5,  "" + professor.getCelular());
+            stmt.setString(5, "" + professor.getCelular());
             stmt.setString(6, "" + id);
             stmt.execute();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
     }

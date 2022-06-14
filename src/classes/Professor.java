@@ -15,6 +15,10 @@ public class Professor extends Pessoa {
     public void setFunc_cod(int func_cod) {
         this.func_cod = func_cod;
     }
+    
+    public String listaIDnome(){
+        return "Codigo de funcionário: " + func_cod + super.retornaNome();
+    }
 
     @Override
     public String toString() {

@@ -9,48 +9,70 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SalaDAO {
-    
+
     Connection conn = Conexao.getConnection();
-    
-    public void inserirSala(Sala sala){
-        
+
+    public void inserirSala(Sala sala) {
+
         String sql = "INSERT INTO sala(nome, local, capacidade) VALUES (?,?,?)";
-        try{
+        try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, sala.getNome());
             stmt.setString(2, sala.getLocal());
             stmt.setString(3, "" + sala.getCapacidade());
             stmt.execute();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
-    public ArrayList<Sala> listarSala(){
-        
+
+    public ArrayList<Sala> listarSala() {
+
         String sql = "SELECT * FROM sala";
         ArrayList<Sala> sala = new ArrayList<>();
-        
-        try{
+
+        try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Sala sl = new Sala();
                 sl.setId(rs.getInt("id_sala"));
                 sl.setNome(rs.getString("nome"));
                 sl.setLocal(rs.getString("local"));
                 sl.setCapacidade(rs.getInt("capacidade"));
-                
+
                 sala.add(sl);
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
-        
+
         return sala;
     }
-    
-        public void alteraProfessor(Sala sala, int id) {
+
+    public Sala searchIndex(int id) {
+
+        String sql = "SELECT * FROM sala WHERE id_sala=?";
+        Sala sl = new Sala();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                sl.setId(rs.getInt("id_sala"));
+                sl.setNome(rs.getString("nome"));
+                sl.setLocal(rs.getString("local"));
+                sl.setCapacidade(rs.getInt("capacidade"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return sl;
+    }
+
+    public void alteraProfessor(Sala sala, int id) {
         String sql = "UPDATE sala SET nome=?, local=?, capacidade=? WHERE id_sala=?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -59,8 +81,11 @@ public class SalaDAO {
             stmt.setString(3, "" + sala.getCapacidade());
             stmt.setString(4, "" + id);
             stmt.execute();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
+
+
+
 }

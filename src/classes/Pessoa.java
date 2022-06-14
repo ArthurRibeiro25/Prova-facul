@@ -48,6 +48,10 @@ public class Pessoa {
     public void setCelular(long celular) {
         this.celular = celular;
     }
+    
+    public String retornaNome(){
+        return "\nNome: " + nome + "\n";
+    }
 
     @Override
     public String toString() {

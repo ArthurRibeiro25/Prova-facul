@@ -42,10 +42,11 @@ public class Sala {
     public void setCapacidade(int capacidade) {
         this.capacidade = capacidade;
     }
+    
 
     @Override
     public String toString() {
-        return "Sala:\n\n" + "Id: " + id + "\nNome: " + nome + "\nLocal: " + local + "\nCapacidade: " + capacidade;
+        return "Sala:\n\n" + "Id: " + id + "\nNome: " + nome + "\nLocal: " + local + "\nCapacidade: " + capacidade + "\n\n";
     }
 
 }

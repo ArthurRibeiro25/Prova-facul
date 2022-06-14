@@ -62,12 +62,13 @@ public class ControllerProfessor {
             listagem += p.toString();
         }
         id = Integer.parseInt(JOptionPane.showInputDialog(null, listagem + "\nCodigo de funcionario do professor que deseja alterar: "));
-
-        prof.setNome(JOptionPane.showInputDialog("Digite o nome: ", pfs.get(id-1).getNome()));
-        prof.setCpf(Long.parseLong(JOptionPane.showInputDialog("Digite o CPF: ", pfs.get(id-1).getCpf())));
-        prof.setEndereco(JOptionPane.showInputDialog("Digite o endereco: ", pfs.get(id-1).getEndereco()));
-        prof.setEmail(JOptionPane.showInputDialog("Digite o email: ", pfs.get(id-1).getEmail()));
-        prof.setCelular(Long.parseLong(JOptionPane.showInputDialog("Digite o celular: ", pfs.get(id-1).getCelular())));
+        Professor p = pdao.searchIndex(id);
+        
+        prof.setNome(JOptionPane.showInputDialog("Digite o nome: ", p.getNome()));
+        prof.setCpf(Long.parseLong(JOptionPane.showInputDialog("Digite o CPF: ", p.getCpf())));
+        prof.setEndereco(JOptionPane.showInputDialog("Digite o endereco: ", p.getEndereco()));
+        prof.setEmail(JOptionPane.showInputDialog("Digite o email: ", p.getEmail()));
+        prof.setCelular(Long.parseLong(JOptionPane.showInputDialog("Digite o celular: ", p.getCelular())));
 
         pdao.alteraProfessor(prof, id);
     }

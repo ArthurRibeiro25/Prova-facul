@@ -57,11 +57,11 @@ public class ControllerSala {
         }
 
         id = Integer.parseInt(JOptionPane.showInputDialog(null, listagem + "\n\nID da sala que deseja alterar: "));
+        Sala s = sdao.searchIndex(id);
 
-        sala.setNome(JOptionPane.showInputDialog("Digite o nome: ", sa.get(id - 1).getNome()));
-        sala.setLocal(JOptionPane.showInputDialog("Digite o CPF: ", sa.get(id - 1).getLocal()));
-        sala.setCapacidade(Integer.parseInt(JOptionPane.showInputDialog("Digite o endereco: ", sa.get(id - 1).getCapacidade())));
-
+        sala.setNome(JOptionPane.showInputDialog("Digite o nome: ",s.getNome()));
+        sala.setLocal(JOptionPane.showInputDialog("Digite o CPF: ", s.getLocal()));
+        sala.setCapacidade(Integer.parseInt(JOptionPane.showInputDialog("Digite o endereco: ", s.getCapacidade())));
 
         sdao.alteraProfessor(sala, id);
     }

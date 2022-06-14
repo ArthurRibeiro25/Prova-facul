@@ -1,16 +1,21 @@
 package classes;
 
 public class Curso {
-    
+
     private int curso_cod;
     private String curso;
     private Double carga_h;
     private String curso_desc;
+    private String status;
+    private int func_cod;
     private String professor;
-    private String sala;
+    private int sala_cod;
+    private String sala_nome;
+    private String sala_local;
+    private int capacidade;
 
-    public Curso(){
-        
+    public Curso() {
+
     }
 
     public int getCurso_cod() {
@@ -45,6 +50,14 @@ public class Curso {
         this.curso_desc = curso_desc;
     }
 
+    public int getFunc_cod() {
+        return func_cod;
+    }
+
+    public void setFunc_cod(int func_cod) {
+        this.func_cod = func_cod;
+    }
+
     public String getProfessor() {
         return professor;
     }
@@ -53,19 +66,50 @@ public class Curso {
         this.professor = professor;
     }
 
-    public String getSala() {
-        return sala;
+    public int getSala_cod() {
+        return sala_cod;
     }
 
-    public void setSala(String sala) {
-        this.sala = sala;
+    public void setSala_cod(int sala_cod) {
+        this.sala_cod = sala_cod;
+    }
+
+    public String getSala_nome() {
+        return sala_nome;
+    }
+
+    public void setSala_nome(String sala_nome) {
+        this.sala_nome = sala_nome;
+    }
+
+    public String getSala_local() {
+        return sala_local;
+    }
+
+    public void setSala_local(String sala_local) {
+        this.sala_local = sala_local;
+    }
+
+    public int getCapacidade() {
+        return capacidade;
+    }
+
+    public void setCapacidade(int capacidade) {
+        this.capacidade = capacidade;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return "Curso:\n\n" + "ID do curso: " + curso_cod + "\nCurso: " + curso + "\nCarga horaria: " + carga_h + "\nDescrição do curso: " + curso_desc + "\nProfessor: " + professor + "\nSala: " + sala;
+        return "Curso:\n\n" + "ID do curso: " + curso_cod + "\nCurso: " + curso + "\nCarga horaria: " + carga_h + "\nDescrição do curso: " + curso_desc + "\nStatus: " + status + "\nProfessor: " + professor
+                + "\nID da sala: " + sala_cod + "\nNome da sala: " + sala_nome + "\nLocal da sala: " + sala_local + "\nCapacidade da sala: " + capacidade + "\n\n";
     }
 
-    
-    
 }

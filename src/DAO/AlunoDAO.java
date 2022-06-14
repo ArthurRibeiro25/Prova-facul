@@ -2,6 +2,7 @@ package DAO;
 
 import BD.Conexao;
 import classes.Aluno;
+import classes.Curso;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,8 +14,6 @@ public class AlunoDAO {
     Connection conn = Conexao.getConnection();
 
     public void inserirAluno(Aluno aluno) {
-
-        String teste;
 
         String sql = "INSERT INTO aluno(nome, cpf, endereco, email, celular) VALUES (?,?,?,?,?)";
         try {
@@ -28,8 +27,9 @@ public class AlunoDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+       
     }
-
+    
     public ArrayList<Aluno> listarAlunos() {
 
         String sql = "SELECT * FROM aluno";
@@ -54,6 +54,31 @@ public class AlunoDAO {
         }
 
         return alunos;
+    }
+    
+        public Aluno searchIndex(int id) {
+
+        String sql = "SELECT * FROM aluno WHERE matricula=?";
+        Aluno a = new Aluno();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                a.setMatricula(rs.getInt("matricula"));
+                a.setNome(rs.getString("nome"));
+                a.setCpf(rs.getLong("cpf"));
+                a.setEndereco(rs.getString("endereco"));
+                a.setEmail(rs.getString("email"));
+                a.setCelular(rs.getInt("celular"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return a;
     }
     
         public void alteraAluno(Aluno aluno, int id) {
