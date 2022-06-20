@@ -1,5 +1,9 @@
 package DAO;
 
+/**
+ * Essa classe recebe as informações do ControllerCurso e as insere no banco de dados
+ */
+
 import BD.Conexao;
 import classes.Curso;
 import java.sql.Connection;
@@ -12,7 +16,7 @@ public class CursoDAO {
 
     Connection conn = Conexao.getConnection();
 
-    public void inserirCurso(Curso curso) {
+    public void inserirCurso(Curso curso) {//responsável por coletar as informações do ControllerCurso e enviar ao banco de dados
 
         String sql = "INSERT INTO curso(curso, carga_h, curso_desc, status, func_cod, sala_cod) VALUES (?,?,?,?,?,?)";
         try {
@@ -29,7 +33,7 @@ public class CursoDAO {
         }
     }
 
-    public ArrayList<Curso> listarCursos() {
+    public ArrayList<Curso> listarCursos() {//Lista todas as informações relacionadas a curso
 
         String sql = "SELECT curso.curso_cod, curso.curso, curso.carga_h, curso.curso_desc, curso.status, professor.nome, curso.sala_cod, "
                 + "sala.nome, sala.local, sala.capacidade FROM curso, professor, sala "
@@ -43,7 +47,7 @@ public class CursoDAO {
                 Curso cr = new Curso();
                 cr.setCurso_cod(rs.getInt("curso_cod"));
                 cr.setCurso(rs.getString("curso"));
-                cr.setCarga_h(rs.getDouble("carga_h"));
+                cr.setCarga_h(rs.getInt("carga_h"));
                 cr.setCurso_desc(rs.getString("curso_desc"));
                 cr.setStatus(rs.getString("status"));
                 cr.setProfessor(rs.getString("professor.nome"));
@@ -60,7 +64,7 @@ public class CursoDAO {
         return curso;
     }
 
-    public Curso seartchIndex(int id) {
+    public Curso seartchIndex(int id) {//recebe o id de um curso e retorna suas informações
 
         String sql = "SELECT * FROM curso WHERE curso_cod=?";
         Curso cr = new Curso();
@@ -72,7 +76,7 @@ public class CursoDAO {
             while (rs.next()) {
                 cr.setCurso_cod(rs.getInt("curso_cod"));
                 cr.setCurso(rs.getString("curso"));
-                cr.setCarga_h(rs.getDouble("carga_h"));
+                cr.setCarga_h(rs.getInt("carga_h"));
                 cr.setCurso_desc(rs.getString("curso_desc"));
                 cr.setStatus(rs.getString("status"));
                 cr.setFunc_cod(rs.getInt("func_cod"));
@@ -85,7 +89,7 @@ public class CursoDAO {
         return cr;
     }
 
-    public void alteraCurso(Curso curso, int id) {
+    public void alteraCurso(Curso curso, int id) { //recebe o id do curso que será alterado e as novas informações
         String sql = "UPDATE curso SET curso=?, carga_h=?, curso_desc=?, status=?, func_cod=?, sala_cod=? WHERE curso_cod=?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);

@@ -1,13 +1,13 @@
 package classes;
 
 public class Professor extends Pessoa {
-    
+
     private int func_cod;
 
-    public Professor(){
-        
-    }  
-    
+    public Professor() {
+
+    }
+
     public int getFunc_cod() {
         return func_cod;
     }
@@ -15,8 +15,8 @@ public class Professor extends Pessoa {
     public void setFunc_cod(int func_cod) {
         this.func_cod = func_cod;
     }
-    
-    public String listaIDnome(){
+
+    public String listaIDnome() {
         return "Codigo de funcionário: " + func_cod + super.retornaNome();
     }
 
@@ -25,6 +25,5 @@ public class Professor extends Pessoa {
         String msg = "Professor: \n\nCodigo de funcionario: " + func_cod;
         return msg + super.toString();
     }
-    
-    
+
 }

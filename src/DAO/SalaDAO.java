@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class SalaDAO {
 
-    Connection conn = Conexao.getConnection();
+    Connection conn = Conexao.getConnection();//estabelece conexão com o banco
 
-    public void inserirSala(Sala sala) {
+    public void inserirSala(Sala sala) {//recebe as informações do ControllerSala e cadastra no banco
 
         String sql = "INSERT INTO sala(nome, local, capacidade) VALUES (?,?,?)";
         try {
@@ -26,7 +26,7 @@ public class SalaDAO {
         }
     }
 
-    public ArrayList<Sala> listarSala() {
+    public ArrayList<Sala> listarSala() { //coleta todas salas registradas no banco e insere em um arraylist para assim serem listadas
 
         String sql = "SELECT * FROM sala";
         ArrayList<Sala> sala = new ArrayList<>();
@@ -50,7 +50,7 @@ public class SalaDAO {
         return sala;
     }
 
-    public Sala searchIndex(int id) {
+    public Sala searchIndex(int id) { //envia o id da sala e retorna todas as informações da mesma
 
         String sql = "SELECT * FROM sala WHERE id_sala=?";
         Sala sl = new Sala();
@@ -72,7 +72,7 @@ public class SalaDAO {
         return sl;
     }
 
-    public void alteraProfessor(Sala sala, int id) {
+    public void alteraProfessor(Sala sala, int id) { //recebe as atualizações dos dados da sala
         String sql = "UPDATE sala SET nome=?, local=?, capacidade=? WHERE id_sala=?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -85,7 +85,5 @@ public class SalaDAO {
             System.out.println(ex);
         }
     }
-
-
 
 }

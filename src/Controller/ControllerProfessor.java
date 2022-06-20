@@ -14,7 +14,7 @@ public class ControllerProfessor {
     private ProfessorDAO pdao = new ProfessorDAO();
 
     public void menuProfessor() {
-
+        //manu para manipular professores
         int option;
 
         option = Integer.parseInt(JOptionPane.showInputDialog(null, "MENU: \n\n1- Cadastrar Professor\n2- Listar Professores\n3- Altera Professores"));
@@ -37,7 +37,7 @@ public class ControllerProfessor {
         }
     }
 
-    public void cadastraProfessor() {
+    public void cadastraProfessor() { //coleta as informações do cadastro do professor e envia para o DAO
 
         Professor p = new Professor();
 
@@ -51,7 +51,7 @@ public class ControllerProfessor {
 
     }
 
-    public void altera() {
+    public void altera() { //recebe as antigas informações do professor e permite as alterações 
 
         Professor prof = new Professor();
         int id;
@@ -63,7 +63,7 @@ public class ControllerProfessor {
         }
         id = Integer.parseInt(JOptionPane.showInputDialog(null, listagem + "\nCodigo de funcionario do professor que deseja alterar: "));
         Professor p = pdao.searchIndex(id);
-        
+
         prof.setNome(JOptionPane.showInputDialog("Digite o nome: ", p.getNome()));
         prof.setCpf(Long.parseLong(JOptionPane.showInputDialog("Digite o CPF: ", p.getCpf())));
         prof.setEndereco(JOptionPane.showInputDialog("Digite o endereco: ", p.getEndereco()));

@@ -1,10 +1,14 @@
 package classes;
 
+import Controller.ControllerAlunoCurso;
+
 public class Curso {
+
+    ControllerAlunoCurso cac = new ControllerAlunoCurso();
 
     private int curso_cod;
     private String curso;
-    private Double carga_h;
+    private int carga_h;
     private String curso_desc;
     private String status;
     private int func_cod;
@@ -34,11 +38,11 @@ public class Curso {
         this.curso = curso;
     }
 
-    public Double getCarga_h() {
+    public int getCarga_h() {
         return carga_h;
     }
 
-    public void setCarga_h(Double carga_h) {
+    public void setCarga_h(int carga_h) {
         this.carga_h = carga_h;
     }
 
@@ -109,7 +113,8 @@ public class Curso {
     @Override
     public String toString() {
         return "Curso:\n\n" + "ID do curso: " + curso_cod + "\nCurso: " + curso + "\nCarga horaria: " + carga_h + "\nDescrição do curso: " + curso_desc + "\nStatus: " + status + "\nProfessor: " + professor
-                + "\nID da sala: " + sala_cod + "\nNome da sala: " + sala_nome + "\nLocal da sala: " + sala_local + "\nCapacidade da sala: " + capacidade + "\n\n";
+                + "\nID da sala: " + sala_cod + "\nNome da sala: " + sala_nome + "\nLocal da sala: "
+                + sala_local + "\nCapacidade da sala: " + capacidade + "\nAlunos: \n" + cac.listagem(this) + "\n\n";
     }
 
 }

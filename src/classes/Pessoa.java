@@ -1,13 +1,14 @@
 package classes;
 
+//superclasse que possui todos os dados iguais do professor e aluno
+
 public class Pessoa {
-    
+
     private String nome;
     private long cpf;
     private String endereco;
     private String email;
     private long celular;
-
 
     public String getNome() {
         return nome;
@@ -48,8 +49,8 @@ public class Pessoa {
     public void setCelular(long celular) {
         this.celular = celular;
     }
-    
-    public String retornaNome(){
+
+    public String retornaNome() {
         return "\nNome: " + nome + "\n";
     }
 
@@ -57,5 +58,5 @@ public class Pessoa {
     public String toString() {
         String a = "\nNome: " + nome + "\nCpf: " + cpf + "\nEndereco: " + endereco + "\nEmail: " + email + "\nCelular: " + celular + "\n\n";
         return a;
-    }  
+    }
 }

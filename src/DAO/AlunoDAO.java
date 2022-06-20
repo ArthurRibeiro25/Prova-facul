@@ -1,5 +1,9 @@
 package DAO;
 
+
+/**
+ * Essa classe recebe as funções do ControllerAluno e as insere e altera no banco
+ */
 import BD.Conexao;
 import classes.Aluno;
 import classes.Curso;
@@ -11,11 +15,14 @@ import java.util.ArrayList;
 
 public class AlunoDAO {
 
-    Connection conn = Conexao.getConnection();
+    Connection conn = Conexao.getConnection(); //conecta a classe ao banco
 
     public void inserirAluno(Aluno aluno) {
-
-        String sql = "INSERT INTO aluno(nome, cpf, endereco, email, celular) VALUES (?,?,?,?,?)";
+/**
+ * Envia o comando sql ao banco e preenche com as informações recebidas do ControllerAluno
+ */
+        
+        String sql = "INSERT INTO aluno(nome, cpf, endereco, email, celular) VALUES (?,?,?,?,?)"; 
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
@@ -27,11 +34,15 @@ public class AlunoDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-       
+
     }
-    
+
     public ArrayList<Aluno> listarAlunos() {
 
+        /**
+         * Pesquisa no banco os alunos e os insere em um ArrayList para assim serem listados
+         */
+        
         String sql = "SELECT * FROM aluno";
         ArrayList<Aluno> alunos = new ArrayList<>();
 
@@ -47,16 +58,21 @@ public class AlunoDAO {
                 al.setEmail(rs.getString("email"));
                 al.setCelular(rs.getInt("celular"));
 
-                alunos.add(al);
+                alunos.add(al); //pega as informações presentes na instancia de aluno(al) e insere no arraylist
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
 
-        return alunos;
+        return alunos; //retorna o array para ser listado posteriormente
     }
-    
-        public Aluno searchIndex(int id) {
+
+    public Aluno searchIndex(int id) { 
+        
+        /**
+         * Essa é a função de pesquisa de informações no banco, aonde a funções recebe a matricula do aluno e retorna suas informa
+         * ções
+         */
 
         String sql = "SELECT * FROM aluno WHERE matricula=?";
         Aluno a = new Aluno();
@@ -65,7 +81,7 @@ public class AlunoDAO {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
                 a.setMatricula(rs.getInt("matricula"));
                 a.setNome(rs.getString("nome"));
@@ -80,8 +96,12 @@ public class AlunoDAO {
 
         return a;
     }
-    
-        public void alteraAluno(Aluno aluno, int id) {
+
+    public void alteraAluno(Aluno aluno, int id) {
+        
+        /**
+         * Funções que atualiza as informações de um aluno no banco. Recebe as novas informações do ControllerAluno
+         */
         String sql = "UPDATE aluno SET nome=?, cpf=?, endereco=?, email=?, celular=? WHERE matricula=?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -92,7 +112,7 @@ public class AlunoDAO {
             stmt.setString(5, aluno.getCelular() + "");
             stmt.setString(6, "" + id);
             stmt.execute();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
     }

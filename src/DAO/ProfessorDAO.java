@@ -1,5 +1,7 @@
 package DAO;
 
+//Recebe as informações do ControllerProfessor e insere no banco de dados
+
 import BD.Conexao;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,9 +12,9 @@ import java.util.ArrayList;
 
 public class ProfessorDAO {
 
-    Connection conn = Conexao.getConnection();
+    Connection conn = Conexao.getConnection(); // estabelece conexão com o banco
 
-    public void inserirProfessor(Professor professor) {
+    public void inserirProfessor(Professor professor) { //insere as informações vindas do ControllerProfessor no banco de dados
 
         String sql = "INSERT INTO professor(nome, cpf, endereco, email, celular) VALUES (?,?,?,?,?)";
         try {
@@ -28,7 +30,7 @@ public class ProfessorDAO {
         }
     }
 
-    public ArrayList<Professor> listarProfessores() {
+    public ArrayList<Professor> listarProfessores() { //retorna um arraylist com todos os professores cadastrados no banco de dados
 
         String sql = "SELECT * FROM professor";
         ArrayList<Professor> professor = new ArrayList<>();
@@ -54,7 +56,7 @@ public class ProfessorDAO {
         return professor;
     }
 
-    public Professor searchIndex(int id) {
+    public Professor searchIndex(int id) { //retorna todas informações presentes no codigo de funcionário enviado
 
         String sql = "SELECT * FROM professor WHERE func_cod=?";
         Professor pf = new Professor();
@@ -79,7 +81,7 @@ public class ProfessorDAO {
         return pf;
     }
 
-    public ArrayList<Professor> listarProfessoresIDNome() {
+    public ArrayList<Professor> listarProfessoresIDNome() { //lista apenas o codigo de funcionário e o nome do professor 
 
         String sql = "SELECT professor.func_cod, professor.nome FROM professor";
         ArrayList<Professor> p = new ArrayList<>();
@@ -101,7 +103,7 @@ public class ProfessorDAO {
         return p;
     }
 
-    public void alteraProfessor(Professor professor, int id) {
+    public void alteraProfessor(Professor professor, int id) { //recebe as alterações feitas no professor cadastrado
         String sql = "UPDATE professor SET nome=?, cpf=?, endereco=?, email=?, celular=? WHERE func_cod=?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);

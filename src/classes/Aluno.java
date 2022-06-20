@@ -1,9 +1,9 @@
 package classes;
 
 public class Aluno extends Pessoa {
-    
-    private int matricula;   
-    
+
+    private int matricula;
+
     public int getMatricula() {
         return matricula;
     }
@@ -16,6 +16,5 @@ public class Aluno extends Pessoa {
     public String toString() {
         return "Dados do aluno: \n\nMatricula: " + matricula + super.toString();
     }
-  
-    
+
 }

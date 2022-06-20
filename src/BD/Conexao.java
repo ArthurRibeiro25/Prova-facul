@@ -1,6 +1,8 @@
 package BD;
 
-
+/** 
+ * Essa classe é responsável por criar a conexão entre o programa e o banco de dados
+**/
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +14,7 @@ public class Conexao {
     public static Connection getConnection() {
 
         Connection conn = null;
-
+        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver carregado com sucesso!");

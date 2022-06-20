@@ -42,7 +42,6 @@ public class Sala {
     public void setCapacidade(int capacidade) {
         this.capacidade = capacidade;
     }
-    
 
     @Override
     public String toString() {

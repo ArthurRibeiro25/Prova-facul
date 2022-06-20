@@ -12,6 +12,7 @@ public class ControllerSala {
 
     public void menuSala() {
 
+        //menu para manipular salas
         int option;
 
         option = Integer.parseInt(JOptionPane.showInputDialog("MENU\n\n1- Cadastrar Sala\n2- Listar Salas\n3- Alterar Salas"));
@@ -34,7 +35,7 @@ public class ControllerSala {
         }
     }
 
-    public void cadastraSala() {
+    public void cadastraSala() { //coleta dados para cadastrar a sala e as envia para o DAO
 
         Sala s = new Sala();
 
@@ -45,7 +46,7 @@ public class ControllerSala {
         sdao.inserirSala(s);
     }
 
-    public void altera() {
+    public void altera() {//recebe as informações antigas do banco e permite a alteração
 
         Sala sala = new Sala();
         int id;
@@ -59,7 +60,7 @@ public class ControllerSala {
         id = Integer.parseInt(JOptionPane.showInputDialog(null, listagem + "\n\nID da sala que deseja alterar: "));
         Sala s = sdao.searchIndex(id);
 
-        sala.setNome(JOptionPane.showInputDialog("Digite o nome: ",s.getNome()));
+        sala.setNome(JOptionPane.showInputDialog("Digite o nome: ", s.getNome()));
         sala.setLocal(JOptionPane.showInputDialog("Digite o CPF: ", s.getLocal()));
         sala.setCapacidade(Integer.parseInt(JOptionPane.showInputDialog("Digite o endereco: ", s.getCapacidade())));
 
